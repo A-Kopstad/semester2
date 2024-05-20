@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="module" src="/js/main.js"></script>
+    <script type="module" src="/js/pages/auction.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg d-flex justify-content-between p-4">
+        <a class="ms-4 navbar-brand" href="index.html">
+          <img src="public/images/auctionSquare.png" alt="logo of auctionSquare" />
+        </a>
+        <div class="d-flex flex-row gap-5 align-items-center">
+          <button class="btn btn-primary ps-4 pe-4 pt-1 pb-1 text-white">
+            Log in
+          </button>
+
+          <a class="d-flex gap-3 align-items-center" href="#">
+            <p class="m-0 menu-navbar-text">Menu</p>
+            <button class="hamburger">
+              <span class="navbar-toggler-icon fs-3"></span>
+            </button>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="bg-secondary p-4">
+      <section class="container-fluid">
+        <div class="row">
+          <div class="col-lg-3">
+            <!-- Search bar -->
+            <input
+              type="text"
+              class="form-control mb-3"
+              placeholder="Search for listings..."
+            />
+            <!-- Filters -->
+            <div class="filters">
+              <h3 class="text-primary mb-3">Filters</h3>
+              <!-- Price Range Filter -->
+              <div class="mb-3">
+                <label for="price-range" class="form-label">Price Range</label>
+                <select class="form-select" id="price-range">
+                  <option value="0-100">0 - 100</option>
+                  <option value="100-500">100 - 500</option>
+                  <option value="500-1000">500 - 1000</option>
+                  <option value="1000+">1000+</option>
+                </select>
+              </div>
+              <!-- Condition Filter -->
+              <div class="mb-3">
+                <label for="condition" class="form-label">Condition</label>
+                <select class="form-select" id="condition">
+                  <option value="new">New</option>
+                  <option value="used">Used</option>
+                </select>
+              </div>
+              <!-- Add more filters as needed -->
+            </div>
+          </div>
+          <div class="col-lg-9">
+            <!-- Listings -->
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+              <!-- Example Listings -->
+              <!-- Replace the image source with your actual listing images -->
+              <!-- Repeat this block for each listing -->
+              <div class="col">
+                <div class="listing bg-white border rounded p-3">
+                  <img src="public/images/step-2.png" alt="Listing Image" />
+                </div>
+              </div>
+              <div class="col">
+                <div class="listing bg-white border rounded p-3">
+                  <img src="public/images/step-2.png" alt="Listing Image" />
+                </div>
+              </div>
+              <div class="col">
+                <div class="listing bg-white border rounded p-3">
+                  <img src="public/images/step-2.png" alt="Listing Image" />
+                </div>
+              </div>
+              <!-- Add more example listings here -->
+              <!-- You can repeat the above block for each listing -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

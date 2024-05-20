@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://kit.fontawesome.com/282fd42550.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="/js/main.js"></script>
+    <script type="module" src="/js/pages/register-login.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg d-flex justify-content-between p-4">
+        <a class="ms-4 navbar-brand" href="index.html">
+          <img src="public/images/auctionSquare.png" alt="logo of auctionSquare" />
+        </a>
+        <div class="d-flex flex-row gap-5 align-items-center">
+          <button class="btn btn-primary ps-4 pe-4 pt-1 pb-1 text-white">
+            Log in
+          </button>
+
+          <a class="d-flex gap-3 align-items-center" href="#">
+            <p class="m-0 menu-navbar-text">Menu</p>
+            <button class="hamburger">
+              <span class="navbar-toggler-icon fs-3"></span>
+            </button>
+          </a>
+        </div>
+      </nav>
+    </header>
+    <section class="container d-flex mt-5 justify-content-center">
+      <div class="d-flex flex-column gap-5 p-5 form-border border-primary">
+      <div class="d-flex flex-column gap-3">
+        <h1>Login or register account</h1>
+        <div class="d-flex justify-content-center gap-2">
+          <button id="registerButton">Register</button>
+          <button id="loginButton">Log in</button>
+        </div>
+      </div>
+      <div>
+      <form class="d-flex flex-column gap-2 text-capitalize" id="registerForm" action="">
+        <label for="first-name">First name</label>
+        <input type="text" name="first-name">
+
+        <label for="last-name">Last name</label>
+        <input type="text" name="last-name">
+
+        <label for="">E-mail</label>
+        <input type="email">
+
+        <label for="username">Username</label>
+        <input type="text" name="username">
+
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password">
+
+        <label for="password-repeat"> Repeat password</label>
+        <input type="password" name="password-repeat" id="passwordRepeat">
+
+        <button class="mt-3">Complete registration</button>
+      </form>
+
+      <form class="d-flex flex-column gap-2 text-capitalize" id="loginForm" action="">
+        <label for="login-username">Username</label>
+        <input type="text" name="login-username">
+
+        <label for="login-password">Password</label>
+        <input type="password" name="login-password">
+
+        <button class="mt-3">Log in</button>
+      </form>
+    </div>
+    </div>
+    </section>
+  </body>
+</html>
