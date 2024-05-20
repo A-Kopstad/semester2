@@ -1,6 +1,5 @@
 // vite.config.js
 import { defineConfig } from 'vite';
-// dette er for at scss skal compile til de forskjellige sidene når du deployer til netlify! skriv inn riktig path til alle html sidene under
 export default defineConfig({
   build: {
     rollupOptions: {
