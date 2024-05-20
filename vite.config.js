@@ -5,12 +5,11 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: 'index.html',
-        explore: 'html/explore.html',
+        explore: 'html/auction.html',
         listing: 'html/listing.html',
         profile: 'html/profile.html',
-        myProfile: 'html/my-profile.html',
         login: 'html/login.html',
-        register: 'html/register.html'
+        register: 'html/register-login.html'
       }
     }
   }
