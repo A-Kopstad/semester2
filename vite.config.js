@@ -8,8 +8,7 @@ export default defineConfig({
         explore: 'html/auction.html',
         listing: 'html/listing.html',
         profile: 'html/profile.html',
-        login: 'html/login.html',
-        register: 'html/register-login.html'
+        login: 'html/register-login.html'
       }
     }
   }
