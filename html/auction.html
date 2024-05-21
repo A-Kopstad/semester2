@@ -9,86 +9,93 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg d-flex justify-content-between p-4">
+      <nav class="navbar navbar-expand-md p-4">
         <a class="ms-4 navbar-brand" href="index.html">
-          <img src="public/images/auctionSquare.png" alt="logo of auctionSquare" />
+          <img
+            src="/public/images/auctionSquare.png"
+            alt="logo of auctionSquare"
+          />
         </a>
-        <div class="d-flex flex-row gap-5 align-items-center">
-          <button class="btn btn-primary ps-4 pe-4 pt-1 pb-1 text-white">
-            Log in
-          </button>
-
-          <a class="d-flex gap-3 align-items-center" href="#">
-            <p class="m-0 menu-navbar-text">Menu</p>
-            <button class="hamburger">
-              <span class="navbar-toggler-icon fs-3"></span>
-            </button>
-          </a>
+        <button
+          class="navbar-toggler ms-auto"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav text-center">
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="/html/auction.html"
+                >Auctions</a
+              >
+            </li>
+            <li class="nav-item d-none" id="profile-link">
+              <a class="nav-link text-dark" href="/html/profile.html"
+                >Profile</a
+              >
+            </li>
+            <li class="nav-item">
+              <button
+                id="auth-button"
+                class="btn btn-primary ms-md-3 ps-4 pe-4 pt-1 pb-1 text-white"
+              >
+                Log in
+              </button>
+            </li>
+          </ul>
         </div>
       </nav>
     </header>
-
-    <main class="bg-secondary p-4">
-      <section class="container-fluid">
-        <div class="row">
-          <div class="col-lg-3">
-            <!-- Search bar -->
-            <input
-              type="text"
-              class="form-control mb-3"
-              placeholder="Search for listings..."
-            />
-            <!-- Filters -->
-            <div class="filters">
-              <h3 class="text-primary mb-3">Filters</h3>
-              <!-- Price Range Filter -->
-              <div class="mb-3">
-                <label for="price-range" class="form-label">Price Range</label>
-                <select class="form-select" id="price-range">
-                  <option value="0-100">0 - 100</option>
-                  <option value="100-500">100 - 500</option>
-                  <option value="500-1000">500 - 1000</option>
-                  <option value="1000+">1000+</option>
-                </select>
+    <main class="bg-secondary  p-4">
+      <div class="container">
+        <h1 class="fs-4 ms-3 mb-5">Explore Auctions</h1>
+        <section class="container-fluid">
+          <div class="row">
+            <div class="col-lg-3">
+              <!-- Search bar -->
+              <label for="search-bar" class="form-label fs-5"
+                >Search listings</label
+              >
+              <input
+                type="text"
+                class="form-control mb-3"
+                placeholder="Search for listings..."
+                id="search-bar"
+              />
+              <!-- Filters -->
+              <div class="filters">
+                <!-- Status Filter -->
+                <div class="mb-3">
+                  <label for="status-filter" class="form-label fs-5"
+                    >Status</label
+                  >
+                  <select class="form-select" id="status-filter">
+                    <option value="all">All</option>
+                    <option value="active">Active</option>
+                  </select>
+                </div>
               </div>
-              <!-- Condition Filter -->
-              <div class="mb-3">
-                <label for="condition" class="form-label">Condition</label>
-                <select class="form-select" id="condition">
-                  <option value="new">New</option>
-                  <option value="used">Used</option>
-                </select>
+            </div>
+            <div class="col-lg-9">
+              <!-- Listings -->
+              <div
+                id="listings-container"
+                class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"
+              >
+                <!-- Dynamic listings Here -->
               </div>
-              <!-- Add more filters as needed -->
             </div>
           </div>
-          <div class="col-lg-9">
-            <!-- Listings -->
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
-              <!-- Example Listings -->
-              <!-- Replace the image source with your actual listing images -->
-              <!-- Repeat this block for each listing -->
-              <div class="col">
-                <div class="listing bg-white border rounded p-3">
-                  <img src="public/images/step-2.png" alt="Listing Image" />
-                </div>
-              </div>
-              <div class="col">
-                <div class="listing bg-white border rounded p-3">
-                  <img src="public/images/step-2.png" alt="Listing Image" />
-                </div>
-              </div>
-              <div class="col">
-                <div class="listing bg-white border rounded p-3">
-                  <img src="public/images/step-2.png" alt="Listing Image" />
-                </div>
-              </div>
-              <!-- Add more example listings here -->
-              <!-- You can repeat the above block for each listing -->
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </main>
   </body>
 </html>

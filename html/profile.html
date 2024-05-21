@@ -8,26 +8,169 @@
     <script type="module" src="/js/pages/profile.js"></script>
   </head>
   <body>
+    <!-- Edit Avatar Modal -->
+    <div
+      class="modal fade"
+      id="addAvatarModal"
+      tabindex="-1"
+      aria-labelledby="addAvatarModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <p class="modal-title fs-5" id="addAvatarModalLabel">Update Avatar</p>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="updateAvatarForm">
+              <div class="mb-3">
+                <label for="avatarUrl" class="form-label">Avatar URL</label>
+                <input
+                  type="url"
+                  class="form-control"
+                  id="avatarUrl"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="avatarAlt" class="form-label">Alt Text</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="avatarAlt"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary text-light">
+                Update Avatar
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Create Listing Modal -->
+    <div
+      class="modal fade"
+      id="createListingModal"
+      tabindex="-1"
+      aria-labelledby="createListingModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <p class="modal-title fs-5" id="createListingModalLabel">
+              Create New Listing
+            </p>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="createListingForm">
+              <div class="mb-3">
+                <label for="listingTitle" class="form-label">Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="listingTitle"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="listingDescription" class="form-label"
+                  >Description</label
+                >
+                <textarea
+                  class="form-control"
+                  id="listingDescription"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="listingMediaUrl" class="form-label"
+                  >Media URL</label
+                >
+                <input type="url" class="form-control" id="listingMediaUrl" />
+              </div>
+              <div class="mb-3">
+                <label for="listingMediaAlt" class="form-label"
+                  >Media Alt Text</label
+                >
+                <input type="text" class="form-control" id="listingMediaAlt" />
+              </div>
+              <div class="mb-3">
+                <label for="listingEndsAt" class="form-label">Ends At</label>
+                <input
+                  type="datetime-local"
+                  class="form-control"
+                  id="listingEndsAt"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-success">
+                Create Listing
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
     <header>
-      <nav class="navbar navbar-expand-lg d-flex justify-content-between p-4">
+      <nav class="navbar navbar-expand-md p-4">
         <a class="ms-4 navbar-brand" href="index.html">
-          <img src="public/images/auctionSquare.png" alt="logo of auctionSquare" />
+          <img
+            src="/public/images/auctionSquare.png"
+            alt="logo of auctionSquare"
+          />
         </a>
-        <div class="d-flex flex-row gap-5 align-items-center">
-          <button class="btn btn-primary ps-4 pe-4 pt-1 pb-1 text-white">
-            Log in
-          </button>
-
-          <a class="d-flex gap-3 align-items-center" href="#">
-            <p class="m-0 menu-navbar-text">Menu</p>
-            <button class="hamburger">
-              <span class="navbar-toggler-icon fs-3"></span>
-            </button>
-          </a>
+        <button
+          class="navbar-toggler ms-auto"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav text-center">
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="/html/auction.html"
+                >Auctions</a
+              >
+            </li>
+            <li class="nav-item d-none" id="profile-link">
+              <a class="nav-link text-dark" href="/html/profile.html"
+                >Profile</a
+              >
+            </li>
+            <li class="nav-item">
+              <button
+                id="auth-button"
+                class="btn btn-primary ms-md-3 ps-4 pe-4 pt-1 pb-1 text-white"
+              >
+                Log in
+              </button>
+            </li>
+          </ul>
         </div>
       </nav>
     </header>
-
     <main class="container mt-5">
       <div class="row">
         <div class="col-lg-4">
@@ -40,40 +183,36 @@
                   class="img-fluid rounded-circle"
                 />
               </div>
-              <h2 class="card-title">John Stewart</h2>
+              <button
+                id="add-avatar-button"
+                class="btn btn-primary text-light mb-3"
+              >
+                Add Avatar
+              </button>
+              <h1 class="card-title fw-4">John Stewart</h1>
               <p class="card-text">Credit score: XXX</p>
               <hr />
-              <ul class="list-group">
-                <li class="list-group-item">Your biddings</li>
-                <li class="list-group-item">Your listings</li>
-                <li class="list-group-item">Sold items</li>
-                <li class="list-group-item">Bought items</li>
-              </ul>
+              <button id="create-listing-button" class="btn btn-primary text-light mb-3">
+                Create New Listing
+              </button>
             </div>
           </div>
         </div>
-        <div class="col-lg-8 card">
-          <div class="mb-5 mt-5">
-            <h1>Your biddings</h1>
-          </div>
-          <ul class="list-group your-biddings">
-            <li class="list-group-item">
-              <div class="d-flex align-items-center">
-                <div class="me-3">
-                  <img
-                    src="public/images/step-2.png"
-                    alt="Listing Image"
-                    class="img-fluid"
-                  />
+        <div class="col-lg-8">
+          <div class="card">
+            <div class="card-body">
+              <div class="mb-5 mt-5">
+                <h2 class="text-center">Your Listings</h2>
+                <div class="row your-listings">
+                  <!-- Listings will be dynamically added here -->
                 </div>
-                <p class="m-0">Antique Necklace</p>
               </div>
-            </li>
-            <!-- Repeat this for each bidding -->
-          </ul>
+            </div>
+          </div>
         </div>
       </div>
     </main>
+
     <footer class="text-center mt-5">
       <p>&copy; 2024 AuctionSquare. All rights reserved.</p>
     </footer>
