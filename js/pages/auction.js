@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', async function() {
       listingElement.style.cursor = 'pointer'
       listingElement.innerHTML = `
         <div class="card h-100 shadow-sm">
-          <img src="${listing.media[0]?.url || 'public/images/listingImage.png'}" alt="${listing.media[0]?.alt || 'Listing Image'}" class="card-img-top">
+          <img src="${listing.media[0]?.url || '/public/images/listingImage.png'}" alt="${listing.media[0]?.alt || 'Listing Image'}" class="card-img-top">
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">${listing.title}</h5>
             <p class="card-text text-truncate">${listing.description}</p>
