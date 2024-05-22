@@ -29,7 +29,7 @@ npm -v
 Before getting started, clone the repository
 
 ```bash
-git clone git@github.com:A-Kopstad/Semester-project-1.git](https://github.com/A-Kopstad/semester2)
+git clone https://github.com/A-Kopstad/semester2
 ```
 
 ###Install 
