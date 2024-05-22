@@ -19,7 +19,9 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <p class="modal-title fs-5" id="addAvatarModalLabel">Update Avatar</p>
+            <p class="modal-title fs-5" id="addAvatarModalLabel">
+              Update Avatar
+            </p>
             <button
               type="button"
               class="btn-close"
@@ -40,12 +42,7 @@
               </div>
               <div class="mb-3">
                 <label for="avatarAlt" class="form-label">Alt Text</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="avatarAlt"
-                  required
-                />
+                <input type="text" class="form-control" id="avatarAlt" />
               </div>
               <button type="submit" class="btn btn-primary text-light">
                 Update Avatar
@@ -94,20 +91,32 @@
                 <textarea
                   class="form-control"
                   id="listingDescription"
+                  rows="3"
                 ></textarea>
               </div>
-              <div class="mb-3">
-                <label for="listingMediaUrl" class="form-label"
-                  >Media URL</label
-                >
-                <input type="url" class="form-control" id="listingMediaUrl" />
+              <div id="mediaInputsContainer">
+                <div class="mb-3 media-input">
+                  <label for="listingMediaUrl" class="form-label"
+                    >Media URL</label
+                  >
+                  <input type="url" class="form-control" id="listingMediaUrl" />
+                  <label for="listingMediaAlt" class="form-label"
+                    >Alt Text</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="listingMediaAlt"
+                  />
+                </div>
               </div>
-              <div class="mb-3">
-                <label for="listingMediaAlt" class="form-label"
-                  >Media Alt Text</label
-                >
-                <input type="text" class="form-control" id="listingMediaAlt" />
-              </div>
+              <button
+                type="button"
+                class="btn btn-secondary mb-3"
+                id="addMediaButton"
+              >
+                Add Another Image
+              </button>
               <div class="mb-3">
                 <label for="listingEndsAt" class="form-label">Ends At</label>
                 <input
@@ -117,7 +126,7 @@
                   required
                 />
               </div>
-              <button type="submit" class="btn btn-success">
+              <button type="submit" class="btn btn-primary text-light">
                 Create Listing
               </button>
             </form>
@@ -171,8 +180,14 @@
         </div>
       </nav>
     </header>
+    <!-- Loader -->
+    <div id="loader" class="text-center my-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
     <main class="container mt-5">
-      <div class="row">
+      <div class="row bg-secondary p-3 rounded">
         <div class="col-lg-4">
           <div class="card">
             <div class="card-body text-center">
@@ -180,7 +195,7 @@
                 <img
                   src="public/images/step-1.png"
                   alt="Avatar"
-                  class="img-fluid rounded-circle"
+                  class="profile-image img-fluid rounded"
                 />
               </div>
               <button
@@ -192,7 +207,10 @@
               <h1 class="card-title fw-4">John Stewart</h1>
               <p class="card-text">Credit score: XXX</p>
               <hr />
-              <button id="create-listing-button" class="btn btn-primary text-light mb-3">
+              <button
+                id="create-listing-button"
+                class="btn btn-primary text-light mb-3"
+              >
                 Create New Listing
               </button>
             </div>
@@ -202,7 +220,7 @@
           <div class="card">
             <div class="card-body">
               <div class="mb-5 mt-5">
-                <h2 class="text-center">Your Listings</h2>
+                <h2 class="text-center mb-4">Your Listings</h2>
                 <div class="row your-listings">
                   <!-- Listings will be dynamically added here -->
                 </div>
@@ -212,7 +230,6 @@
         </div>
       </div>
     </main>
-
     <footer class="text-center mt-5">
       <p>&copy; 2024 AuctionSquare. All rights reserved.</p>
     </footer>

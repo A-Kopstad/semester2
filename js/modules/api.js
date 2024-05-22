@@ -18,6 +18,10 @@ export { getProfile };
 export { updateAvatar };
 //-- Create Listing
 export { createListing };
+//-- Single Listing
+export { getSingleListing };
+//-- place bid to a listing
+export { placeBid };
 
 //-- Utility --//
 //-- Base URL 
@@ -183,4 +187,45 @@ async function createListing(listingData) {
 
   const result = await response.json();
   return result;
+}/**
+ * Retrieve a single listing by its ID
+ * @param {string} id 
+ * @returns {Promise}
+ */
+async function getSingleListing(id) {
+  const url = `${API_BASE_URL}/auction/listings/${encodeURIComponent(id)}?_seller=true&_bids=true`;
+
+  const response = await fetch(url, {
+    method: "GET",
+    headers: getHeaders(false),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch listing");
+  }
+
+  const result = await response.json();
+  return result.data;
+}
+/**
+ * Place a bid on a listing
+ * @param {string} listingId - The ID of the listing
+ * @param {number} amount - The amount to bid
+ * @returns {Promise<object>} - The response data from the API
+ */
+async function placeBid(listingId, amount) {
+  const url = `${API_BASE_URL}/auction/listings/${listingId}/bids`;
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: getHeaders(),
+    body: JSON.stringify({ amount }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to place bid");
+  }
+
+  const result = await response.json();
+  return result.data;
 }

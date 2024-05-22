@@ -16,30 +16,35 @@ function highestNumber(listing) {
   }
   /**
  * Function for countdown on listing
- * @param {string} listingId 
+ * @param {string} elementId
  * @param {string} endsAt 
  */
-function initializeCountdown(listingId, endsAt) {
-    const countdownElement = document.getElementById(`countdown-${listingId}`);
+  function initializeCountdown(elementId, endsAt) {
+    const countdownElement = document.getElementById(elementId);
     const endsAtDate = new Date(endsAt);
-  
-    function updateCountdown() {
-      const now = new Date();
-      const timeRemaining = endsAtDate - now;
-  
-      if (timeRemaining > 0) {
-        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-  
-        countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-      } else {
-        countdownElement.innerHTML = "Auction ended";
-        clearInterval(countdownInterval);
-      }
+
+    if (!countdownElement) {
+        console.error(`Element with ID ${elementId} not found`);
+        return;
     }
-    //-- Update timer every second
+
+    function updateCountdown() {
+        const now = new Date();
+        const timeRemaining = endsAtDate - now;
+
+        if (timeRemaining > 0) {
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        } else {
+            countdownElement.innerHTML = "Auction ended";
+            clearInterval(countdownInterval);
+        }
+    }
+
     const countdownInterval = setInterval(updateCountdown, 1000);
     updateCountdown();
-  }
+}

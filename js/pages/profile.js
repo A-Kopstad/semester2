@@ -18,20 +18,26 @@ document.addEventListener('DOMContentLoaded', async function() {
     const profileContainer = document.querySelector('main.container');
     const avatarElement = document.querySelector('.avatar img');
     const profileNameElement = document.querySelector('.card-title');
+    const loader = document.getElementById('loader');
     const creditScoreElement = document.querySelector('.card-text');
     const yourListingsContainer = document.querySelector('.your-listings');
     const addAvatarButton = document.getElementById('add-avatar-button');
     const createListingButton = document.getElementById('create-listing-button');
     const updateAvatarForm = document.getElementById('updateAvatarForm');
     const createListingForm = document.getElementById('createListingForm');
+    const mediaInputsContainer = document.getElementById('mediaInputsContainer');
+    const addMediaButton = document.getElementById('addMediaButton');
+    
 
 
     if (!userName) {
+        loader.style.display = 'none';
       profileContainer.innerHTML = '<p class="text-center">No user logged in</p>';
       return;
     }
   
     try {
+        loader.style.display = 'block';
       const profile = await getProfile(userName);
   
       //-- Update profile information
@@ -64,49 +70,76 @@ document.addEventListener('DOMContentLoaded', async function() {
             `;
             yourListingsContainer.appendChild(listingElement);
            //-- Initialize countdown for each listing
-        initializeCountdown(listing.id, listing.endsAt);
+           initializeCountdown(`countdown-${listing.id}`, listing.endsAt);
+            //-- Click event to navigate to the listing.html page with the listing ID
+      listingElement.addEventListener('click', () => {
+        window.location.href = `listing.html?id=${listing.id}`;
+      });
     });
-        }
+   }
+   loader.style.display = 'none';
     } catch (error) {
+        loader.style.display = 'none';
       console.error("Failed to fetch profile", error);
-      profileContainer.innerHTML = '<p class="text-center">Failed to load profile</p>';
+      profileContainer.innerHTML = '<p class="text-center">Failed to load profile. Please try again later or contact support if the issue persists.</p>';
     }
   
-    //-- Create New Listing --//
- //-- Event listener for create listing button
- createListingButton.addEventListener('click', () => {
-    // Open the modal
-    const createListingModal = new bootstrap.Modal(document.getElementById('createListingModal'));
-    createListingModal.show();
-  });
+//-- Create New Listing --//
 
-  //-- Event listener for the create listing form submission
-  createListingForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
+//-- Event listener for create listing button
+    createListingButton.addEventListener('click', () => {
+        // Open the modal
+        const createListingModal = new bootstrap.Modal(document.getElementById('createListingModal'));
+        createListingModal.show();
+    });
 
-    const title = document.getElementById('listingTitle').value;
-    const description = document.getElementById('listingDescription').value;
-    const mediaUrl = document.getElementById('listingMediaUrl').value;
-    const mediaAlt = document.getElementById('listingMediaAlt').value;
-    const endsAt = new Date(document.getElementById('listingEndsAt').value).toISOString();
+//-- Event listener to add more media inputs
+    addMediaButton.addEventListener('click', () => {
+        const mediaInput = document.createElement('div');
+        mediaInput.className = 'mb-3 media-input';
+        mediaInput.innerHTML = `
+            <label class="form-label">Media URL</label>
+            <input type="url" class="form-control">
+            <label class="form-label">Alt Text</label>
+            <input type="text" class="form-control">
+        `;
+        mediaInputsContainer.appendChild(mediaInput);
+    });
 
-    const listingData = {
-      title,
-      description,
-      media: mediaUrl ? [{ url: mediaUrl, alt: mediaAlt }] : [],
-      endsAt
-    };
+    //-- Event listener for the create listing form submission
+    createListingForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
 
-    try {
-      await createListing(listingData);
-      alert('Listing created successfully');
-      // Close the modal
-      bootstrap.Modal.getInstance(document.getElementById('createListingModal')).hide();
-    } catch (error) {
-      console.error("Failed to create listing", error);
-      alert('Ensure image descriptions are limited to 120 characters, titles to 280 characters, and descriptions to 280 characters when creating a listing');
-    }
-  });
+        const title = document.getElementById('listingTitle').value;
+        const description = document.getElementById('listingDescription').value;
+        const endsAt = new Date(document.getElementById('listingEndsAt').value).toISOString();
+
+        const mediaInputs = mediaInputsContainer.querySelectorAll('.media-input');
+        const media = Array.from(mediaInputs).map(input => {
+            const url = input.querySelector('input[type="url"]').value;
+            const alt = input.querySelector('input[type="text"]').value;
+            return url ? { url, alt } : null;
+        }).filter(item => item !== null); 
+
+        const listingData = {
+            title,
+            description,
+            media,
+            endsAt
+        };
+
+        try {
+            await createListing(listingData);
+            alert('Listing created successfully');
+            createListingForm.reset();
+            mediaInputsContainer.innerHTML = ''; 
+
+            bootstrap.Modal.getInstance(document.getElementById('createListingModal')).hide();
+        } catch (error) {
+            console.error("Failed to create listing", error);
+            alert('Ensure image descriptions are limited to 120 characters, titles to 280 characters, and descriptions to 280 characters when creating a listing');
+        }
+    });
 
   //-- Edit Avatar --//
 

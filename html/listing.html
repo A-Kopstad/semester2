@@ -54,37 +54,66 @@
         </div>
       </nav>
     </header>
+    <!-- Loader -->
+    <div id="loader" class="text-center my-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
     <main class="bg-secondary">
-      <section class="d-flex container-fluid justify-content-center">
-        <div class="container d-flex flex-column bg-light mt-5 mb-5 rounded">
-          <div class="ms-5 mt-3"><a class="ms-5">&lt; back to auction</a></div>
-          <div class="d-flex mb-5">
-            <div class="ms-5 mt-3">
-              <img
-                class="p-5 ms-5 border border-3 border-primary rounded"
-                src="public/images/step-3.png"
-                alt=""
-              />
-            </div>
-            <div class="p-5 ms-5">
-              <h1>Title of listing</h1>
-              <p>Time remaining of auction</p>
-              <p>"seller"</p>
-              <p>2 hrs remaining</p>
-              <div class="d-flex align-items-center gap-3">
-                <p class="m-0">Price: 240 usd</p>
-                <input type="text" />
-                <button
-                  class="ps-4 pe-4 rounded bg-primary border border-primary text-white"
-                >
-                  bid
-                </button>
+      <section class="d-flex justify-content-center">
+        <div class="container p-sm-5 p-2 bg-light mt-5 mb-5 rounded p-4">
+          <div class="mb-3 text-center text-lg-start">
+            <a class="text-decoration-none" href="index.html"
+              >&lt; back to auction</a
+            >
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div
+                class="d-flex justify-content-center align-items-start mb-4 mb-lg-0"
+              >
+                <div class="listing-image-container w-100 position-relative">
+                  <img
+                    id="listing-image"
+                    class="listing-image img-fluid border border-3 border-primary rounded w-100"
+                    src="public/images/step-3.png"
+                    alt="Listing img"
+                  />
+                </div>
               </div>
-              <p class="pt-3">description</p>
-              <p>Bidding history</p>
-              <ul class="list-group">
-                <li class="list-group-item">10pm sarah bid 230 usd</li>
-                <li class="list-group-item">09.30pm lars bid 220 usd</li>
+            </div>
+            <div class="col-lg-6">
+              <h1 class="fs-4 text-break" id="listing-title">
+                Title of listing
+              </h1>
+              <p id="listing-description" class="pt-3 text-break">
+                Description
+              </p>
+              <p id="time-remaining-text" class="mb-1">
+                Time remaining of auction:
+                <span class="fw-bold" id="time-remaining"></span>
+              </p>
+              <p class="my-3" id="listing-seller">Seller</p>
+              <div
+                class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3 mb-3"
+              >
+                <p class="me-3 mb-0 fw-bold">
+                  Price: <span id="highest-bid">240 usd</span>
+                </p>
+                <div class="d-flex flex-column flex-sm-row flex-nowrap w-100">
+                  <input
+                    id="bid-amount"
+                    type="number"
+                    class="form-control w-auto me-0 me-sm-2 mb-2 mb-sm-0"
+                  />
+                  <button id="bid-button" class="btn btn-primary">Bid</button>
+                </div>
+              </div>
+              <div id="bid-message"></div>
+              <p class="mt-5">Bidding history</p>
+              <ul id="bidding-history" class="list-group">
+                <!-- Bidding history items will be here -->
               </ul>
             </div>
           </div>

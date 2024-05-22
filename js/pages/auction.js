@@ -13,6 +13,7 @@ import { initializeCountdown } from "../modules/utility.js";
 //-- Loads and displays listings including images, titles, descriptions, end times, and bid counts, with error handling for fetching data
 document.addEventListener('DOMContentLoaded', async function() {
   const listingsContainer = document.getElementById('listings-container');
+  const loader = document.getElementById('loader');
   const statusFilter = document.getElementById('status-filter');
   const searchBar = document.getElementById('search-bar');
   //-- Variable to store all fetched listings
@@ -23,6 +24,8 @@ document.addEventListener('DOMContentLoaded', async function() {
   //-- Function to display listings
   function displayListings(listings) {
     listingsContainer.innerHTML = '';
+    loader.style.display = 'none';
+
 
     if (listings.length === 0) {
       listingsContainer.innerHTML = '<p class="text-center">No listings available</p>';
@@ -49,7 +52,11 @@ document.addEventListener('DOMContentLoaded', async function() {
       listingsContainer.appendChild(listingElement);
 
       //-- Initialize countdown for each listing
-      initializeCountdown(listing.id, listing.endsAt);
+      initializeCountdown(`countdown-${listing.id}`, listing.endsAt);
+      //-- Click event to navigate to the listing.html page with the listing ID
+      listingElement.addEventListener('click', () => {
+        window.location.href = `listing.html?id=${listing.id}`;
+      });
     });
   }
 
@@ -63,18 +70,21 @@ document.addEventListener('DOMContentLoaded', async function() {
   //-- Function to load all listings
   async function loadListings() {
     try {
+      loader.style.display = 'block';
       allListings = await getAllListings();
       filteredListings = allListings;
       filterAndDisplayListings();
     } catch (error) {
+      loader.style.display = 'none';
       console.error("Failed to fetch listings", error);
-      listingsContainer.innerHTML = '<p class="text-center">Failed to load listings</p>';
+      listingsContainer.innerHTML = '<p class="text-center">Failed to search listings. Please try again later or contact support if the issue persists.</p>';
     }
   }
 
   //-- Function to search and display listings
   async function searchAndDisplayListings(query) {
     try {
+      loader.style.display = 'block';
       if (query.length > 0) {
         const listings = await searchListings(query);
         filteredListings = listings;
@@ -83,6 +93,7 @@ document.addEventListener('DOMContentLoaded', async function() {
       }
       filterAndDisplayListings();
     } catch (error) {
+      loader.style.display = 'none';
       console.error("Failed to search listings", error);
       listingsContainer.innerHTML = '<p class="text-center">Failed to search listings</p>';
     }
