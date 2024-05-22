@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         const timeRemainingElement = document.getElementById('time-remaining');
 
         if (listingImage) {
-            listingImage.src = listing.media[0]?.url || '/public/images/listingImage.png';
+            listingImage.src = listing.media[0]?.url || 'public/images/listingImage.png';
             listingImage.alt = listing.media[0]?.alt || 'Listing Image';
         }
 
