@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', async function() {
       const highestBid = highestNumber(listing);
       const listingElement = document.createElement('div');
       listingElement.className = 'col-md-6 mb-4';
+      listingElement.style.cursor = 'pointer'
       listingElement.innerHTML = `
         <div class="card h-100 shadow-sm">
           <img src="${listing.media[0]?.url || '/public/images/listingImage.png'}" alt="${listing.media[0]?.alt || 'Listing Image'}" class="card-img-top">
