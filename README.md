@@ -49,6 +49,11 @@ To customize the application's styles, you can import SCSS files in your JavaScr
 
 https://github.com/users/A-Kopstad/projects/2/views/1
 
+## Contributing
+If you would like to contribute, please make an open pull request. 
 
+## Contact
+
+If you want to reach out to me for inquiries, message me on [LinkedIn](https://www.linkedin.com/in/alexandra-k-2212a7214/) 
 
 
